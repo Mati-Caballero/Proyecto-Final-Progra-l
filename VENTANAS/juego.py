@@ -44,10 +44,10 @@ random.shuffle(lista_preguntas)
 indice_pregunta = 0
 #pregunta = lista_preguntas[indice_pregunta]
 
-click_sonido = pygame.mixer.Sound('VENTANAS\click.mp3')
+click_sonido = pygame.mixer.Sound('VENTANAS\sonidos\click.mp3')
 click_sonido.set_volume(1)
 
-error_sonido = pygame.mixer.Sound('VENTANAS\error.mp3')
+error_sonido = pygame.mixer.Sound('VENTANAS\sonidos\error.mp3')
 error_sonido.set_volume(1)
 
 # pygame.mixer.music.load("musica.mp3")

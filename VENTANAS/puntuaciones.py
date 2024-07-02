@@ -9,7 +9,7 @@ fuente_boton = pygame.font.SysFont("Arial Narrow",23)
 boton_volver = {"superficie":pygame.Surface(TAMAÑO_BOTON_VOLVER),"rectangulo":pygame.Rect(0,0,0,0)}
 boton_volver['superficie'].fill(COLOR_AZUL) # Le asigno un color a esa superficie
 
-click_sonido = pygame.mixer.Sound("VENTANAS\click.mp3")
+click_sonido = pygame.mixer.Sound("VENTANAS\sonidos\click.mp3")
 click_sonido.set_volume(1)
 
 def blit_text(surface, text, pos, font, color=pygame.Color('black')):

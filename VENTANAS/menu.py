@@ -5,19 +5,34 @@ pygame.init()
 
 fuente_menu = pygame.font.SysFont("Arial Narrow",30)
 
+#Fondos escenas
+fondo_menu = pygame.image.load("VENTANAS\imagenes\Fondos\Fondo_main.png")
+fondo_menu = pygame.transform.scale(fondo_menu, (ANCHO, ALTO))
+
+fondo_opciones = pygame.image.load("VENTANAS\imagenes\Fondos\Fondo_opciones.png")
+fondo_opciones = pygame.transform.scale(fondo_opciones, (ANCHO, ALTO))
+
+#Botones
 boton_jugar = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
-boton_jugar['superficie'].fill(COLOR_AZUL)
-
 boton_salir = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
-boton_salir['superficie'].fill(COLOR_AZUL)
-
 boton_opciones = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
-boton_opciones['superficie'].fill(COLOR_AZUL)
-
 boton_puntuaciones = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
-boton_puntuaciones['superficie'].fill(COLOR_AZUL)
 
-click_sonido = pygame.mixer.Sound("VENTANAS\click.mp3")
+#Imagenes botones
+imagen_play = pygame.image.load("VENTANAS\imagenes\Botones\Play.png")
+imagen_play = pygame.transform.scale(imagen_play, (200, 100))
+
+imagen_menu = pygame.image.load("VENTANAS\imagenes\Botones\Menu.png")
+imagen_menu = pygame.transform.scale(imagen_menu, (200, 100))
+
+imagen_back = pygame.image.load("VENTANAS\imagenes\Botones\Back.png")
+imagen_back = pygame.transform.scale(imagen_back, (200, 100))
+
+imagen_score = pygame.image.load("VENTANAS\imagenes\Botones\Score.png")
+imagen_score = pygame.transform.scale(imagen_score, (200, 100))
+
+#Sonido click
+click_sonido = pygame.mixer.Sound("VENTANAS\sonidos\click.mp3")
 click_sonido.set_volume(1)
 
 def blit_text(surface, text, pos, font, color=pygame.Color('black')):
@@ -39,7 +54,6 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
         
 def mostrar_menu(pantalla:pygame.Surface,eventos):
     retorno = "menu"#Un estado de la ventana en la que estoy parado
-    
     for evento in eventos:
         if evento.type == pygame.MOUSEBUTTONDOWN:
             if boton_jugar["rectangulo"].collidepoint(evento.pos):
@@ -60,18 +74,15 @@ def mostrar_menu(pantalla:pygame.Surface,eventos):
                 retorno = "salir"
         elif evento.type == pygame.QUIT:
             retorno = "salir" #El estado salir -> Cuando se le da a la X
-    
-    pantalla.fill(COLOR_BLANCO)
-            
-    boton_jugar["rectangulo"] = pantalla.blit(boton_jugar["superficie"],(125,115))
-    boton_opciones["rectangulo"] = pantalla.blit(boton_opciones["superficie"],(125,195))
-    boton_puntuaciones["rectangulo"] = pantalla.blit(boton_puntuaciones["superficie"],(125,275))
-    boton_salir["rectangulo"] = pantalla.blit(boton_salir["superficie"],(125,355))
-    
-    blit_text(boton_jugar['superficie'],"JUGAR",(20,20),fuente_menu,COLOR_BLANCO)
-    blit_text(boton_opciones['superficie'],"OPCIONES",(20,20),fuente_menu,COLOR_BLANCO)
-    blit_text(boton_puntuaciones['superficie'],"PUNTUACIONES",(20,20),fuente_menu,COLOR_BLANCO)
-    blit_text(boton_salir['superficie'],"SALIR",(20,20),fuente_menu,COLOR_BLANCO)
 
+    boton_jugar["rectangulo"] = pantalla.blit(boton_jugar["superficie"],(160,60))
+    boton_opciones["rectangulo"] = pantalla.blit(boton_opciones["superficie"],(160,160))
+    boton_puntuaciones["rectangulo"] = pantalla.blit(boton_puntuaciones["superficie"],(160,260))
+    boton_salir["rectangulo"] = pantalla.blit(boton_salir["superficie"],(160,365))
+    
+    fondo_menu.blit(imagen_play, (150,45))
+    fondo_menu.blit(imagen_menu, (150,150))
+    fondo_menu.blit(imagen_score, (150,255))
+    fondo_menu.blit(imagen_back, (150,355))
     
     return retorno #Retorna el estado al que va a ir principal
