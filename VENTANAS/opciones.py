@@ -5,20 +5,13 @@ from Importar_imagenes import *
 
 pygame.init()
 
-fuente_boton = pygame.font.SysFont("Arial Narrow",23)
-fuente_volumen =  pygame.font.SysFont("Arial Narrow",50)
+fuente_boton = pygame.font.SysFont("Pixel Times",23)
+fuente_volumen =  pygame.font.SysFont("Pixel Times",30)
 
 boton_suma = {"superficie":pygame.Surface(TAMAÑO_BOTON_SUMA),"rectangulo":pygame.Rect(0,0,0,0)}
-# boton_suma['superficie'].fill(COLOR_ROJO) # Le asigno un color a esa superficie
-
 boton_resta = {"superficie":pygame.Surface(TAMAÑO_BOTON_SUMA),"rectangulo":pygame.Rect(0,0,0,0)}
-# boton_resta['superficie'].fill(COLOR_ROJO) # Le asigno un color a esa superficie
-
 boton_volver = {"superficie":pygame.Surface(TAMAÑO_BOTON_VOLVER),"rectangulo":pygame.Rect(0,0,0,0)}
-boton_volver['superficie'].fill(COLOR_AZUL) # Le asigno un color a esa superficie
-
 boton_mute = {"superficie":pygame.Surface(TAMAÑO_BOTON_MUTE),"rectangulo":pygame.Rect(0,0,0,0)}
-# boton_mute['superficie'].fill(COLOR_AZUL) # Le asigno un color a esa superficie
 
 volumen = 100
 
@@ -66,7 +59,6 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
                 else:
                     volumen = 100
                     click_sonido.play()
-
                 
         elif evento.type == pygame.QUIT:
             retorno = "salir"
@@ -75,8 +67,8 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
 
     boton_resta['rectangulo'] = pantalla.blit(boton_resta['superficie'],(80,150))
     boton_suma['rectangulo'] = pantalla.blit(boton_suma['superficie'],(390,150))
-    boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'],(5,5))
-    boton_mute['rectangulo'] = pantalla.blit(boton_mute['superficie'],(405,30))
+    boton_mute['rectangulo'] = pantalla.blit(boton_mute['superficie'],(405,36))
+    boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'],(21,40))
     
     if volumen == 100:
         pantalla.blit(imagen_volumen_100,(130,135))
@@ -86,23 +78,18 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
         pantalla.blit(imagen_volumen_60,(130,135))
     elif volumen < 59 and volumen > 39:
         pantalla.blit(imagen_volumen_40,(130,135))
-    elif volumen < 39 and volumen > 19:
+    elif volumen < 39 and volumen > 0:
         pantalla.blit(imagen_volumen_20,(130,135))
     elif volumen == 0:
-        pantalla.blit(imagen_mute_off,(400,10))
+        pantalla.blit(imagen_mute_off,(390,1))
         pantalla.blit(imagen_volumen_0,(130,135))
     if volumen > 0:
-        pantalla.blit(imagen_mute_on,(400,10))
+        pantalla.blit(imagen_mute_on,(390, 1))
 
-    # blit_text(boton_suma['superficie'],"VOL +",(0,10),fuente_boton,COLOR_NEGRO)
-    # blit_text(boton_resta['superficie'],"VOL -",(0,10),fuente_boton,COLOR_NEGRO)
-    blit_text(pantalla,f"{volumen} %",(200,200),fuente_volumen,COLOR_NEGRO)
-    blit_text(boton_volver['superficie'],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)        
-    # blit_text(boton_mute['superficie'],"MUTE",(0,10),fuente_boton,COLOR_NEGRO)
+    blit_text(pantalla,f"{volumen} %",(220,155),fuente_volumen,COLOR_NEGRO)
 
-    pantalla.blit(imagen_suma, (385,145))
-    pantalla.blit(imagen_resta, (75,145))
-    
-    # fondo_opciones.blit(imagen_volumen_100,(130,135))
+    pantalla.blit(imagen_suma, (375,130))
+    pantalla.blit(imagen_resta, (65,140))
+    pantalla.blit(imagen_volver, (10,10))
     
     return retorno

@@ -1,35 +1,16 @@
 import pygame
 from constantes import *
+from Importar_imagenes import*
 
 pygame.init()
 
-fuente_menu = pygame.font.SysFont("Arial Narrow",30)
-
-#Fondos escenas
-fondo_menu = pygame.image.load("VENTANAS\imagenes\Fondos\Fondo_main.png")
-fondo_menu = pygame.transform.scale(fondo_menu, (ANCHO, ALTO))
-
-fondo_opciones = pygame.image.load("VENTANAS\imagenes\Fondos\Fondo_opciones.png")
-fondo_opciones = pygame.transform.scale(fondo_opciones, (ANCHO, ALTO))
+fuente_menu = pygame.font.SysFont("Pixel Times",30)
 
 #Botones
 boton_jugar = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
 boton_salir = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
 boton_opciones = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
 boton_puntuaciones = {"superficie":pygame.Surface(TAMAÑO_BOTON),"rectangulo":pygame.Rect(0,0,0,0)}
-
-#Imagenes botones
-imagen_play = pygame.image.load("VENTANAS\imagenes\Botones\Play.png")
-imagen_play = pygame.transform.scale(imagen_play, (200, 100))
-
-imagen_menu = pygame.image.load("VENTANAS\imagenes\Botones\Menu.png")
-imagen_menu = pygame.transform.scale(imagen_menu, (200, 100))
-
-imagen_back = pygame.image.load("VENTANAS\imagenes\Botones\Back.png")
-imagen_back = pygame.transform.scale(imagen_back, (200, 100))
-
-imagen_score = pygame.image.load("VENTANAS\imagenes\Botones\Score.png")
-imagen_score = pygame.transform.scale(imagen_score, (200, 100))
 
 #Sonido click
 click_sonido = pygame.mixer.Sound("VENTANAS\sonidos\click.mp3")

@@ -1,13 +1,15 @@
 import pygame 
 from constantes import *
+from Importar_imagenes import *
+from parseo_puntajes import top_mejores_diez
 
 pygame.init()
 
-fuente = pygame.font.SysFont("Arial Narrow",32)
-fuente_boton = pygame.font.SysFont("Arial Narrow",23)
+fuente = pygame.font.SysFont("Pixel Times",22)
+fuente_boton = pygame.font.SysFont("Pixel Times",23)
 
 boton_volver = {"superficie":pygame.Surface(TAMAÑO_BOTON_VOLVER),"rectangulo":pygame.Rect(0,0,0,0)}
-boton_volver['superficie'].fill(COLOR_AZUL) # Le asigno un color a esa superficie
+# boton_volver['superficie'].fill(COLOR_AZUL) # Le asigno un color a esa superficie
 
 click_sonido = pygame.mixer.Sound("VENTANAS\sonidos\click.mp3")
 click_sonido.set_volume(1)
@@ -43,11 +45,27 @@ def mostrar_puntuaciones(pantalla:pygame.Surface,eventos):
         elif evento.type == pygame.QUIT:
             retorno = "salir"
             
-    pantalla.fill(COLOR_BLANCO)
+    pantalla.blit(fondo_puntuaciones, (0,0))
 
-    boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'],(5,5))
+    boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'],(21,40))
+    pantalla.blit(imagen_volver, (10, 10))
     
-    blit_text(boton_volver['superficie'],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)        
-    blit_text(pantalla,f"ACA SE DEBE MOSTRAR EL TOP 10",(20,200),fuente,COLOR_NEGRO) 
+    nombre_top = " "
+    fecha_top = " "
+    puntaje_top =" "
+    mejores_diez = top_mejores_diez()
+    
+    for i in mejores_diez: #RECORRO LOS MEJORES JUGADORES Y LE ASIGNO LOS VALORES A CADA UNO
+        nombre = i["nombre"]
+        fecha = i["fecha"]
+        puntaje = i["puntuacion"]
+        nombre_top += f'{nombre}\n'
+        fecha_top += f'{fecha}\n'
+        puntaje_top += f'{puntaje}\n'
+
+    blit_text(boton_volver['superficie'],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)
+    blit_text(pantalla,f' NOMBRE\n{nombre_top}',(3,100),fuente,COLOR_NEGRO)
+    blit_text(pantalla, f'FECHA\n{fecha_top}', (200, 100),fuente,COLOR_NEGRO) 
+    blit_text(pantalla, f'PUNTOS\n{puntaje_top}', (400, 100),fuente,COLOR_NEGRO)         
     
     return retorno
