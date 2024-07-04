@@ -1,16 +1,18 @@
 pregunta,respuesta_a,respuesta_b,respuesta_c,respuesta_correcta
-¿Cuál es la capital de Argentina?,Córdoba,Rosario,Buenos Aires,c
-¿En qué año se declaró la independencia de Argentina?,1810,1816,1820,b
-¿Quién fue el primer presidente de Argentina?,Bernardino Rivadavia,Domingo Sarmiento,Julio A. Roca,a
-¿Qué famoso autor argentino escribió 'El Aleph'?,Julio Cortázar,Jorge Luis Borges,Adolfo Bioy Casares,b
-¿Cuál es el deporte más popular en Argentina?,Rugby,Fútbol,Básquet,b
-¿En qué año murió Eva Perón?,1947,1952,1960,b
-¿Cuál es la montaña más alta de Argentina?,Fitz Roy,Aconcagua,Cerro Torre,b
-¿En qué ciudad se encuentra el Obelisco?,Mendoza,Córdoba,Buenos Aires,c
-¿Qué músico argentino fue el líder de la banda Soda Stereo?,Charly García,Fito Páez,Gustavo Cerati,c
-¿Quién es considerado el "Padre de la Patria" en Argentina?,José de San Martín,Manuel Belgrano,Bartolomé Mitre,a
-¿Qué bebida tradicional argentina se toma en una calabaza con una bombilla?,Café,Té,Mate,c
-¿En qué provincia se encuentra la ciudad de Mar del Plata?,Buenos Aires,Córdoba,Santa Fe,a
-¿Quién escribió el poema épico 'Martín Fierro'?,José Hernández,Esteban Echeverría,Ricardo Güiraldes,a
-¿Qué famosa cantante argentina es conocida como "La Voz del Tango"?,Mercedes Sosa,Virginia Luque,Libertad Lamarque,c
-¿En qué ciudad se celebra anualmente el Festival Nacional de la Vendimia?,Salta,Mendoza,San Juan,b
+¿Cuál es el nombre de nuestra galaxia?,Andrómeda,Vía Láctea,Cigarra,b
+¿Qué es una supernova?,Explosión de una estrella,Planeta enano,Tipo de galaxia,a
+¿Qué es un agujero negro?,Región del espacio con alta gravedad,Tipo de cometa,Pequeña estrella,a
+¿Qué es el cinturón de Kuiper?,Zona del sistema solar con asteroides,Región del espacio entre galaxias,Anillo de Saturno,a
+¿Cuál es el planeta más grande del sistema solar?,Mercurio,Júpiter,Marte,b
+¿Cuál es el planeta más cercano al Sol?,Venus,Tierra,Mercurio,c
+¿Qué es una nebulosa?,Nube de gas y polvo interestelar,Tipo de estrella,Satélite natural,a
+¿Qué causa las estaciones en la Tierra?,La inclinación del eje terrestre,El acercamiento al Sol,La distancia a la Luna,a
+¿Cuál es la edad aproximada del universo?,4.5 millones de años,13.8 mil millones de años,100 mil años,b
+¿Qué es un quásar?,Nueva clase de cometa,Núcleo galáctico activo,Tipo de asteroide,b
+¿Qué es la materia oscura?,Materia que no emite luz ni energía,Tipo de agujero negro,Tipo de estrella,a
+¿Cuál es el objeto más lejano del sistema solar?,El cinturón de Kuiper,La Nube de Oort,Plutón,b
+¿Qué es la ley de Hubble?,Ley que describe la expansión del universo,Ley que describe la gravedad terrestre,Ley que describe la rotación de las estrellas,a
+¿Qué es una luna?,Satélite natural que orbita un planeta,Estrella muy pequeña,Nombre de una constelación,a
+¿Qué es un cometa?,Objeto compuesto principalmente de hielo y polvo,Planeta enano,Estrella muy caliente,a
+¿Qué es la zona habitable?,Región donde pueden existir condiciones para la vida,Región del espacio sin gravedad,Región del espacio con alta radiación,a
+¿Qué es el eco cósmico de fondo?,Radiación de microondas que llena el universo,Tipo de estrella,Nombre de una galaxia,a

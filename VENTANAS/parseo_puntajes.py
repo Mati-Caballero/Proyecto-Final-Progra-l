@@ -1,5 +1,14 @@
 import json
 
+def guardar_puntuacion(puntuacion):#CREO UN JSON DONDE SE GUARDEN LAS PUNTUACIONES DE CADA JUGADOR
+    puntuacion = str(puntuacion) #EN DATO STR
+    with open("puntuacion.json", "w") as archivo:
+        json.dump({"puntuacion": puntuacion}, archivo)
+
+def cargar_puntuacion():
+    with open("puntuacion.json", "r") as archivo: #PARSEO Y CARGO EL JSON CON LOS PUNTAJES
+        datos = json.load(archivo) #CARGO EL ARCHIVO 
+        return datos.get("puntuacion", 0) #LLAMO LA PUNTUACION POR DEFECTO SI NO HAY NINGUNA PARTICDA JUGADAS LE DOY UNA PUNTUACION DE 0
 
 def partidas_json(nombre,fecha,puntuacion): #CREO UNA FUNCION PARA LAS PARTIDAS Y GUARDARLAS EN UN JSON
 

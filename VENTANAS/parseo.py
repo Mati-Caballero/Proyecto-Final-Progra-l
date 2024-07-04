@@ -41,3 +41,4 @@ def parse_csv(nombre_archivo:str):
         print("ARCHIVO NO ENCONTRADO")
 
 lista_preguntas = parse_csv("VENTANAS\preguntas.csv")
+

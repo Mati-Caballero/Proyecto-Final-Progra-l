@@ -15,7 +15,7 @@ pygame.display.set_caption("Preguntados")
 ventana_actual = 'menu'
 corriendo = True
 bandera_juego = True
-FPS = 160
+FPS = 60
 clock = pygame.time.Clock()
 
 while corriendo:

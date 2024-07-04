@@ -4,6 +4,8 @@ from constantes import *
 import random
 from Importar_imagenes import *
 import json
+import time
+from parseo_puntajes import *
 
 def blit_text(surface, text, pos, font, color=pygame.Color('black')): 
     words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
@@ -46,6 +48,7 @@ for carta in cartas_respuestas:
 fuente_pregunta = pygame.font.SysFont("Pixel Times",30)
 fuente_respuesta = pygame.font.SysFont("Pixel Times",25)
 fuente_puntuacion =pygame.font.SysFont("Pixel Times",23)
+fuente_tiempo = pygame.font.SysFont("Pixel Times", 20)
 
 puntuacion = 0
 random.shuffle(lista_preguntas)
@@ -57,24 +60,16 @@ click_sonido.set_volume(1)
 error_sonido = pygame.mixer.Sound('VENTANAS\sonidos\error.mp3')
 error_sonido.set_volume(1)
 
-def guardar_puntuacion(puntuacion):#CREO UN JSON DONDE SE GUARDEN LAS PUNTUACIONES DE CADA JUGADOR
-    puntuacion = str(puntuacion) #EN DATO STR
-    with open("puntuacion.json", "w") as archivo:
-        json.dump({"puntuacion": puntuacion}, archivo)
-
-def cargar_puntuacion():
-    with open("puntuacion.json", "r") as archivo: #PARSEO Y CARGO EL JSON CON LOS PUNTAJES
-        datos = json.load(archivo) #CARGO EL ARCHIVO 
-        return datos.get("puntuacion", 0) #LLAMO LA PUNTUACION POR DEFECTO SI NO HAY NINGUNA PARTICDA JUGADAS LE DOY UNA PUNTUACION DE 0
-
 cantidad_oportunidades = 3
 cantidad_preguntas = 0
-
+tiempo_inicio = time.time()  # Tiempo de inicio para la cuenta regresiva
+tiempo_limite = 10  # Segundos de cuenta regresiva
 def mostrar_juego(pantalla:pygame.Surface,eventos):
     global indice_pregunta
     global puntuacion 
     global cantidad_oportunidades
     global cantidad_preguntas
+    global tiempo_inicio
     
     retorno = "juego"
     pregunta = lista_preguntas[indice_pregunta]
@@ -108,6 +103,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                             pregunta = lista_preguntas[indice_pregunta]
                         
                         puntuacion += 100
+                        tiempo_inicio = time.time() # Reinicia la cuenta regresiva
                     elif pregunta['respuesta_correcta'] != respuesta:
                         print("RESPUESTA INCORRECTA")
                         puntuacion -= 50
@@ -134,6 +130,11 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                         retorno = "terminado"
                     if cantidad_preguntas > len(lista_preguntas):
                         retorno = "terminado"
+
+    tiempo_transcurrido = time.time() - tiempo_inicio
+    tiempo_restante = tiempo_limite - int(tiempo_transcurrido)
+    if tiempo_restante == 0:
+        retorno = "terminado"
                         
     pantalla.blit(fondo_juego,(0,0))
 
@@ -166,6 +167,9 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
 
     #MUESTRO PUNTUACION
     blit_text(pantalla,f"Puntuación: {puntuacion} puntos",(10,10),fuente_puntuacion,COLOR_NEGRO)
+
+    # MUESTRO EL TIEMPO RESTANTE
+    blit_text(pantalla, f"Tiempo: {tiempo_restante} s", (355, 25), fuente_tiempo, COLOR_NEGRO)
 
     guardar_puntuacion(puntuacion)
     
