@@ -32,7 +32,7 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
             x += word_width + space
         x = pos[0]  # Reset the x.
         y += word_height  # Start on new row.
-        
+
 def mostrar_menu(pantalla:pygame.Surface,eventos):
     retorno = "menu"#Un estado de la ventana en la que estoy parado
     for evento in eventos:
@@ -54,8 +54,8 @@ def mostrar_menu(pantalla:pygame.Surface,eventos):
                 print("SALIR")
                 retorno = "salir"
         elif evento.type == pygame.QUIT:
-            retorno = "salir" #El estado salir -> Cuando se le da a la X
-
+            retorno = "salir"
+    
     boton_jugar["rectangulo"] = pantalla.blit(boton_jugar["superficie"],(160,60))
     boton_opciones["rectangulo"] = pantalla.blit(boton_opciones["superficie"],(160,160))
     boton_puntuaciones["rectangulo"] = pantalla.blit(boton_puntuaciones["superficie"],(160,260))
@@ -66,4 +66,4 @@ def mostrar_menu(pantalla:pygame.Surface,eventos):
     fondo_menu.blit(imagen_score, (150,255))
     fondo_menu.blit(imagen_back, (150,355))
     
-    return retorno #Retorna el estado al que va a ir principal
+    return retorno

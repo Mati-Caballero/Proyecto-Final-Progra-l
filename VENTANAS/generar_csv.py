@@ -13,7 +13,7 @@ def generar_csv(nombre_archivo:str,lista:list):
                 lista_valores = list(elemento.values())
                 for i in range(len(lista_valores)):
                     lista_valores[i] = str(lista_valores[i])
-
+                
                 dato = separador.join(lista_valores)
                 dato += "\n"
                 archivo.write(dato)

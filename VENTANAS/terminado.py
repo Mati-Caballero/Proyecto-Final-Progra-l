@@ -34,7 +34,7 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
 def mostrar_juego_terminado(pantalla:pygame.Surface,eventos,puntaje):
     global nombre
     retorno = "terminado"
-
+    
     for evento in eventos:
         if evento.type == pygame.MOUSEBUTTONDOWN:
             pass
@@ -56,7 +56,7 @@ def mostrar_juego_terminado(pantalla:pygame.Surface,eventos,puntaje):
                     nombre += letra_presionada
                     
             if letra_presionada == 'return' and len(nombre) > 0:
-                retorno = "salir"
+                retorno = "menu"
                 fecha = datetime.datetime.now()
                 puntuacion = cargar_puntuacion()
                 partidas_json(nombre, fecha, puntuacion)
@@ -64,7 +64,6 @@ def mostrar_juego_terminado(pantalla:pygame.Surface,eventos,puntaje):
         elif evento.type == pygame.QUIT:
             retorno = "salir"
             
-        # pantalla.fill(COLOR_BLANCO)
         pantalla.blit(fondo_terminado, (0, 0))
         
         if puntaje < 1000:
@@ -73,8 +72,8 @@ def mostrar_juego_terminado(pantalla:pygame.Surface,eventos,puntaje):
             pantalla.blit(imagen_you_win, (150, 50))
         
         cuadro['rectangulo'] = pantalla.blit(cuadro['superficie'],(100,300))
-
+        
         blit_text(cuadro['superficie'],nombre,(10,10),fuente,COLOR_BLANCO)
-        blit_text(pantalla,f"Usted obtuvo: {puntaje} puntos",(30,250),fuente,COLOR_NEGRO)
-
+        blit_text(pantalla,f"Usted obtuvo: {puntaje} puntos",(30,250),fuente,COLOR_BLANCO)
+    
     return retorno

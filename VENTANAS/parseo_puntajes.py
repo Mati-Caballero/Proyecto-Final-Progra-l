@@ -1,31 +1,38 @@
 import json
 
-def guardar_puntuacion(puntuacion):#CREO UN JSON DONDE SE GUARDEN LAS PUNTUACIONES DE CADA JUGADOR
-    puntuacion = str(puntuacion) #EN DATO STR
+def guardar_puntuacion(puntuacion):
+    """
+    Crea un JSON guardando las puntuaciones de cada jugador
+    """
+    puntuacion = str(puntuacion)
     with open("puntuacion.json", "w") as archivo:
         json.dump({"puntuacion": puntuacion}, archivo)
 
 def cargar_puntuacion():
-    with open("puntuacion.json", "r") as archivo: #PARSEO Y CARGO EL JSON CON LOS PUNTAJES
-        datos = json.load(archivo) #CARGO EL ARCHIVO 
-        return datos.get("puntuacion", 0) #LLAMO LA PUNTUACION POR DEFECTO SI NO HAY NINGUNA PARTICDA JUGADAS LE DOY UNA PUNTUACION DE 0
+    """
+    Parsea y carga el Json con los puntajes, si no hay ninguna partida jugada la puntuacion es 0
+    """
+    with open("puntuacion.json", "r") as archivo:
+        datos = json.load(archivo)
+        return datos.get("puntuacion", 0)
 
-def partidas_json(nombre,fecha,puntuacion): #CREO UNA FUNCION PARA LAS PARTIDAS Y GUARDARLAS EN UN JSON
-
-    lista_jugadores = [] #CREO UNA LISTA DE JUGADORES VACIAS PARA QUE NO ROMPA EL JSON
-
-    #CREO UN DICCIONARIO Y LE DOY LOS DATOS CON LOS PARAMEROS DE LA FUNCION:
-    datos_del_jugador = {'nombre':nombre,'fecha':fecha.strftime('%d/%m/%Y'),'puntuacion':puntuacion} 
-
-    with open('partidas.json', mode ='r', encoding='utf-8') as archivo: #CREO EL JSON Y LE CARGO LA LISTA VACIA
+def partidas_json(nombre,fecha,puntuacion):
+    """
+    Crea un JSON con las partidas jugadas
+    """
+    lista_jugadores = []
+    
+    datos_del_jugador = {'nombre':nombre,'fecha':fecha.strftime('%d/%m/%Y'),'puntuacion':puntuacion}
+    
+    with open('partidas.json', mode ='r', encoding='utf-8') as archivo:
         lista_jugadores = json.load(archivo)
-
-    lista_jugadores.append(datos_del_jugador) #APPENDEO EL DICCIONARIO CON TODOS LOS DATOS DEL JUGADOR
-
+    
+    lista_jugadores.append(datos_del_jugador)
+    
     with open('partidas.json', mode='w', encoding='utf-8') as archivo:
-        json.dump(lista_jugadores, archivo,indent=4) #LE AÑADO EL DICCIONARIO CON LOS DATOS A LA LISTA AL JSON
-
-    return lista_jugadores #DEVUELVO LA LISTA CON DICCIONARIO/S. 
+        json.dump(lista_jugadores, archivo,indent=4)
+    
+    return lista_jugadores
 
 def nomralizar_datos(lista_puntuacion:list):
     
@@ -35,20 +42,23 @@ def nomralizar_datos(lista_puntuacion:list):
             key["puntuacion"] = valor_clave
 
 def top_mejores_diez():
+    """
+    Ordena la el JSON con el metodo burbujeo y no permite mostrar mas de 10
+    """
     lista_jugadores = []
     
     with open('partidas.json', mode='r', encoding='utf-8') as archivo: 
-        lista_jugadores = json.load(archivo) #CARGO LA LISTA/DICCIONARIO DE LOS JUGADORES
+        lista_jugadores = json.load(archivo) 
     
-    nomralizar_datos(lista_jugadores) #NORMALIZO DATOS LOS PUNTOS DEL JSON
-
-    for i in range(len(lista_jugadores)): #UTILIZO METODO BURBUJEO PARA ORDENAR A LOS JUGADORES
+    nomralizar_datos(lista_jugadores)
+    
+    for i in range(len(lista_jugadores)):
         for j in range( i+1, len(lista_jugadores), 1):
             if lista_jugadores[i]["puntuacion"] < lista_jugadores[j]["puntuacion"]:
                 aux = lista_jugadores[i]
                 lista_jugadores[i] = lista_jugadores[j]
                 lista_jugadores[j] = aux
-                
-    mejores_diez = lista_jugadores[:10]#PARA QUE NO PASE DE MAS DE DE 10 JUGADORES
-
+    
+    mejores_diez = lista_jugadores[:10]
+    
     return mejores_diez

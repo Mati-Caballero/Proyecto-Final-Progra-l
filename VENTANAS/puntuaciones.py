@@ -31,7 +31,6 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
         x = pos[0]  # Reset the x.
         y += word_height  # Start on new row.
 
-
 def mostrar_puntuaciones(pantalla:pygame.Surface,eventos):
     global volumen
 
@@ -64,8 +63,8 @@ def mostrar_puntuaciones(pantalla:pygame.Surface,eventos):
         puntaje_top += f'{puntaje}\n'
 
     blit_text(boton_volver['superficie'],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)
-    blit_text(pantalla,f' NOMBRE\n{nombre_top}',(3,100),fuente,COLOR_NEGRO)
-    blit_text(pantalla, f'FECHA\n{fecha_top}', (200, 100),fuente,COLOR_NEGRO) 
-    blit_text(pantalla, f'PUNTOS\n{puntaje_top}', (400, 100),fuente,COLOR_NEGRO)         
+    blit_text(pantalla,f' NOMBRE\n{nombre_top}',(3,100),fuente,COLOR_BLANCO)
+    blit_text(pantalla, f'FECHA\n{fecha_top}', (200, 100),fuente,COLOR_BLANCO) 
+    blit_text(pantalla, f'PUNTOS\n{puntaje_top}', (400, 100),fuente,COLOR_BLANCO)         
     
     return retorno

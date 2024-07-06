@@ -1,9 +1,8 @@
 import pygame
-from parseo import lista_preguntas
+from generar_csv import lista_preguntas
 from constantes import *
 import random
 from Importar_imagenes import *
-import json
 import time
 from parseo_puntajes import *
 
@@ -46,7 +45,7 @@ for carta in cartas_respuestas:
 
 #DEFINO TEXTO PREGUNTA
 fuente_pregunta = pygame.font.SysFont("Pixel Times",30)
-fuente_respuesta = pygame.font.SysFont("Pixel Times",25)
+fuente_respuesta = pygame.font.SysFont("Pixel Times",15)
 fuente_puntuacion =pygame.font.SysFont("Pixel Times",23)
 fuente_tiempo = pygame.font.SysFont("Pixel Times", 20)
 
@@ -61,15 +60,23 @@ error_sonido = pygame.mixer.Sound('VENTANAS\sonidos\error.mp3')
 error_sonido.set_volume(1)
 
 cantidad_oportunidades = 3
+contador_vueltas = 0
+
 cantidad_preguntas = 0
 tiempo_inicio = time.time()  # Tiempo de inicio para la cuenta regresiva
 tiempo_limite = 10  # Segundos de cuenta regresiva
+
 def mostrar_juego(pantalla:pygame.Surface,eventos):
     global indice_pregunta
     global puntuacion 
     global cantidad_oportunidades
     global cantidad_preguntas
     global tiempo_inicio
+    global contador_vueltas
+    
+    if contador_vueltas > 0:
+        cantidad_oportunidades = 3
+        contador_vueltas = 0
     
     retorno = "juego"
     pregunta = lista_preguntas[indice_pregunta]
@@ -78,6 +85,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
             retorno = "salir"
         if evento.type == pygame.MOUSEBUTTONDOWN:
             for i in range(len(cartas_respuestas)):
+                
                 if cartas_respuestas[i]["rectangulo"].collidepoint(evento.pos):
                     if i == 0:
                         respuesta = 'a'
@@ -108,11 +116,10 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                         print("RESPUESTA INCORRECTA")
                         puntuacion -= 50
                         error_sonido.play()
-                        
                         carta_pregunta['superficie'].fill((COLOR_VIOLETA_CLARO))
+                        
                         for carta in cartas_respuestas:
                             carta['superficie'].fill(COLOR_VIOLETA_CLARO)
-                        
                         indice_pregunta += 1    
                         cantidad_oportunidades -= 1
                         
@@ -123,27 +130,27 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                             indice_pregunta = 0
                             random.shuffle(lista_preguntas)
                             pregunta = lista_preguntas[indice_pregunta]
-                        
+                    
                     cantidad_preguntas += 1
-                        
+                    
                     if cantidad_oportunidades == 0:
                         retorno = "terminado"
+                        contador_vueltas += 1
                     if cantidad_preguntas > len(lista_preguntas):
                         retorno = "terminado"
-
+    
     tiempo_transcurrido = time.time() - tiempo_inicio
     tiempo_restante = tiempo_limite - int(tiempo_transcurrido)
     if tiempo_restante == 0:
         retorno = "terminado"
-                        
+        contador_vueltas += 1
+    
     pantalla.blit(fondo_juego,(0,0))
-
-    #Carta Pregunta
+    
     #Muestro la carta
     pantalla.blit(carta_pregunta['superficie'],(80,70))
-    #Muestro el texto (USANDO PANTALLA)
     blit_text(carta_pregunta['superficie'],pregunta['pregunta'],(10,10),fuente_pregunta)
-
+    
     #VIDAS
     if cantidad_oportunidades == 3:
         pantalla.blit(imagen_vida_3, (300, 10))
@@ -151,22 +158,19 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
         pantalla.blit(imagen_vida_2, (300, 10))
     elif cantidad_oportunidades == 1:
         pantalla.blit(imagen_vida_1, (300, 10))
+    print(cantidad_oportunidades)
     
     #CARTAS RESPUESTAS
-    #IMPRIMO EN PANTALLA LA CARTA R1 Y SU TEXTO
+    #IMPRIMO EN PANTALLA LA CARTA R1, R2 y R3 Y SU TEXTO
     cartas_respuestas[0]['rectangulo'] = pantalla.blit(cartas_respuestas[0]['superficie'],(125,250))
     blit_text(cartas_respuestas[0]['superficie'],pregunta['respuesta_a'],(10,10),fuente_respuesta,COLOR_BLANCO)
-
-    #IMPRIMO EN PANTALLA LA CARTA R2 Y SU TEXTO
     cartas_respuestas[1]['rectangulo'] = pantalla.blit(cartas_respuestas[1]['superficie'],(125,330))
     blit_text(cartas_respuestas[1]['superficie'],pregunta['respuesta_b'],(10,10),fuente_respuesta,COLOR_BLANCO)
-
-    #IMPRIMO EN PANTALLA LA CARTA R3 Y SU TEXTO
     cartas_respuestas[2]['rectangulo'] = pantalla.blit(cartas_respuestas[2]['superficie'],(125,410))
     blit_text(cartas_respuestas[2]['superficie'],pregunta['respuesta_c'],(10,10),fuente_respuesta,COLOR_BLANCO) 
 
     #MUESTRO PUNTUACION
-    blit_text(pantalla,f"Puntuación: {puntuacion} puntos",(10,10),fuente_puntuacion,COLOR_NEGRO)
+    blit_text(pantalla,f"Puntuación: {puntuacion} puntos",(10,10),fuente_puntuacion,COLOR_BLANCO)
 
     # MUESTRO EL TIEMPO RESTANTE
     blit_text(pantalla, f"Tiempo: {tiempo_restante} s", (355, 25), fuente_tiempo, COLOR_NEGRO)
