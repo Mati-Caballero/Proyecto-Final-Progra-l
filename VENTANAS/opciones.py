@@ -12,6 +12,8 @@ boton_suma = {"superficie":pygame.Surface(TAMAÑO_BOTON_SUMA),"rectangulo":pygam
 boton_resta = {"superficie":pygame.Surface(TAMAÑO_BOTON_SUMA),"rectangulo":pygame.Rect(0,0,0,0)}
 boton_volver = {"superficie":pygame.Surface(TAMAÑO_BOTON_VOLVER),"rectangulo":pygame.Rect(0,0,0,0)}
 boton_mute = {"superficie":pygame.Surface(TAMAÑO_BOTON_MUTE),"rectangulo":pygame.Rect(0,0,0,0)}
+boton_suma_vidas = {"superficie":pygame.Surface(TAMAÑO_BOTON_SUMA),"rectangulo":pygame.Rect(0,0,0,0)}
+boton_resta_vidas = {"superficie":pygame.Surface(TAMAÑO_BOTON_SUMA),"rectangulo":pygame.Rect(0,0,0,0)}
 
 volumen = 100
 
@@ -69,6 +71,8 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     boton_suma['rectangulo'] = pantalla.blit(boton_suma['superficie'],(390,150))
     boton_mute['rectangulo'] = pantalla.blit(boton_mute['superficie'],(405,36))
     boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'],(21,40))
+    boton_resta_vidas['rectangulo'] = pantalla.blit(boton_resta_vidas['superficie'],(80,250))
+    boton_suma_vidas['rectangulo'] = pantalla.blit(boton_suma_vidas['superficie'],(390,250))
     
     if volumen == 100:
         pantalla.blit(imagen_volumen_100,(130,135))
@@ -87,6 +91,8 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
         pantalla.blit(imagen_mute_on,(390, 1))
 
     blit_text(pantalla,f"{volumen} %",(220,155),fuente_volumen,COLOR_NEGRO)
+    pantalla.blit(imagen_volumen_100,(130,235))
+    
 
     pantalla.blit(imagen_suma, (375,130))
     pantalla.blit(imagen_resta, (65,140))

@@ -61,18 +61,20 @@ error_sonido.set_volume(1)
 
 cantidad_oportunidades = 3
 contador_vueltas = 0
-
 cantidad_preguntas = 0
-tiempo_inicio = time.time()  # Tiempo de inicio para la cuenta regresiva
-tiempo_limite = 10  # Segundos de cuenta regresiva
+
+clock = pygame.time.Clock()
+contador_tiempo = 10 # Segundos de cuenta regresiva
+ultimo_tiempo = pygame.time.get_ticks()  # Tiempo de inicio para la cuenta regresiva
 
 def mostrar_juego(pantalla:pygame.Surface,eventos):
     global indice_pregunta
     global puntuacion 
     global cantidad_oportunidades
     global cantidad_preguntas
-    global tiempo_inicio
     global contador_vueltas
+    global contador_tiempo
+    global ultimo_tiempo
     
     if contador_vueltas > 0:
         cantidad_oportunidades = 3
@@ -80,6 +82,15 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     
     retorno = "juego"
     pregunta = lista_preguntas[indice_pregunta]
+    
+    tiempo_actual = pygame.time.get_ticks()
+    
+    if tiempo_actual - ultimo_tiempo >= 1000:
+        contador_tiempo -= 1
+        ultimo_tiempo = tiempo_actual
+        print(contador_tiempo)
+    pygame.display.update()
+    
     for evento in eventos:
         if evento.type == pygame.QUIT:
             retorno = "salir"
@@ -111,7 +122,8 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                             pregunta = lista_preguntas[indice_pregunta]
                         
                         puntuacion += 100
-                        tiempo_inicio = time.time() # Reinicia la cuenta regresiva
+                        contador_tiempo = 10# Reinicia la cuenta regresiva
+                        
                     elif pregunta['respuesta_correcta'] != respuesta:
                         print("RESPUESTA INCORRECTA")
                         puntuacion -= 50
@@ -136,14 +148,16 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                     if cantidad_oportunidades == 0:
                         retorno = "terminado"
                         contador_vueltas += 1
+                        contador_tiempo = 10
+                        puntuacion = 0
                     if cantidad_preguntas > len(lista_preguntas):
                         retorno = "terminado"
+                        cantidad_preguntas = 0
     
-    tiempo_transcurrido = time.time() - tiempo_inicio
-    tiempo_restante = tiempo_limite - int(tiempo_transcurrido)
-    if tiempo_restante == 0:
+    if contador_tiempo == 0:
         retorno = "terminado"
         contador_vueltas += 1
+        contador_tiempo = 10
     
     pantalla.blit(fondo_juego,(0,0))
     
@@ -173,7 +187,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     blit_text(pantalla,f"Puntuación: {puntuacion} puntos",(10,10),fuente_puntuacion,COLOR_BLANCO)
 
     # MUESTRO EL TIEMPO RESTANTE
-    blit_text(pantalla, f"Tiempo: {tiempo_restante} s", (355, 25), fuente_tiempo, COLOR_NEGRO)
+    blit_text(pantalla, f"Tiempo: {contador_tiempo} s", (355, 25), fuente_tiempo, COLOR_NEGRO)
 
     guardar_puntuacion(puntuacion)
     
