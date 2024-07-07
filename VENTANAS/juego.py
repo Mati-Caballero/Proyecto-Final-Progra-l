@@ -5,6 +5,7 @@ import random
 from Importar_imagenes import *
 import time
 from parseo_puntajes import *
+import opciones
 
 def blit_text(surface, text, pos, font, color=pygame.Color('black')): 
     words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
@@ -36,9 +37,7 @@ cartas_respuestas = [
     {"superficie":pygame.Surface(TAMAÑO_RESPUESTA),"rectangulo":pygame.Rect((0,0,0,0))},#R3 -> 2
 ]
 
-fondo_carta_respuesta =pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, 240, 250, 60),0 , 5 ,5, 5, 5, 5)
-fondo_carta_respuesta =pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, 320, 250, 60),0 , 5 ,5, 5, 5, 5)
-fondo_carta_respuesta =pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, 400, 250, 60),0 , 5 ,5, 5, 5, 5)
+
 
 for carta in cartas_respuestas:
     carta['superficie'].fill(COLOR_VIOLETA_CLARO)
@@ -59,15 +58,16 @@ click_sonido.set_volume(1)
 error_sonido = pygame.mixer.Sound('VENTANAS\sonidos\error.mp3')
 error_sonido.set_volume(1)
 
-cantidad_oportunidades = 3
+# cantidad_oportunidades = opciones.cantidad_vidas
 contador_vueltas = 0
 cantidad_preguntas = 0
 
 clock = pygame.time.Clock()
-contador_tiempo = 10 # Segundos de cuenta regresiva
 ultimo_tiempo = pygame.time.get_ticks()  # Tiempo de inicio para la cuenta regresiva
+contador_tiempo = opciones.cantidad_tiempo # Segundos de cuenta regresiva
 
 def mostrar_juego(pantalla:pygame.Surface,eventos):
+    
     global indice_pregunta
     global puntuacion 
     global cantidad_oportunidades
@@ -75,9 +75,12 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     global contador_vueltas
     global contador_tiempo
     global ultimo_tiempo
+    global fondo_carta_respuesta
+    
+    cantidad_oportunidades = opciones.cantidad_vidas
     
     if contador_vueltas > 0:
-        cantidad_oportunidades = 3
+        cantidad_oportunidades = opciones.cantidad_vidas
         contador_vueltas = 0
     
     retorno = "juego"
@@ -121,12 +124,12 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                             random.shuffle(lista_preguntas)
                             pregunta = lista_preguntas[indice_pregunta]
                         
-                        puntuacion += 100
-                        contador_tiempo = 10# Reinicia la cuenta regresiva
+                        puntuacion += opciones.cantidad_puntos_preguntas
+                        contador_tiempo = opciones.cantidad_tiempo# Reinicia la cuenta regresiva
                         
                     elif pregunta['respuesta_correcta'] != respuesta:
                         print("RESPUESTA INCORRECTA")
-                        puntuacion -= 50
+                        puntuacion -= opciones.cantidad_puntos_preguntas
                         error_sonido.play()
                         carta_pregunta['superficie'].fill((COLOR_VIOLETA_CLARO))
                         
@@ -148,7 +151,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                     if cantidad_oportunidades == 0:
                         retorno = "terminado"
                         contador_vueltas += 1
-                        contador_tiempo = 10
+                        contador_tiempo = opciones.cantidad_tiempo
                         puntuacion = 0
                     if cantidad_preguntas > len(lista_preguntas):
                         retorno = "terminado"
@@ -157,7 +160,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     if contador_tiempo == 0:
         retorno = "terminado"
         contador_vueltas += 1
-        contador_tiempo = 10
+        contador_tiempo = opciones.cantidad_tiempo
     
     pantalla.blit(fondo_juego,(0,0))
     
@@ -166,20 +169,28 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     blit_text(carta_pregunta['superficie'],pregunta['pregunta'],(10,10),fuente_pregunta)
     
     #VIDAS
+    # if cantidad_oportunidades == 5:
+    #     pantalla.blit(imagen_vida_3, (300, 10))
+    # elif cantidad_oportunidades == 4:
+    #     pantalla.blit(imagen_vida_3, (300, 10))
     if cantidad_oportunidades == 3:
         pantalla.blit(imagen_vida_3, (300, 10))
     elif cantidad_oportunidades == 2:
         pantalla.blit(imagen_vida_2, (300, 10))
     elif cantidad_oportunidades == 1:
         pantalla.blit(imagen_vida_1, (300, 10))
-    print(cantidad_oportunidades)
     
     #CARTAS RESPUESTAS
     #IMPRIMO EN PANTALLA LA CARTA R1, R2 y R3 Y SU TEXTO
+    fondo_carta_respuesta =pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, 240, 250, 60),0 , 5 ,5, 5, 5, 5)
     cartas_respuestas[0]['rectangulo'] = pantalla.blit(cartas_respuestas[0]['superficie'],(125,250))
     blit_text(cartas_respuestas[0]['superficie'],pregunta['respuesta_a'],(10,10),fuente_respuesta,COLOR_BLANCO)
+    
+    fondo_carta_respuesta =pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, 320, 250, 60),0 , 5 ,5, 5, 5, 5)
     cartas_respuestas[1]['rectangulo'] = pantalla.blit(cartas_respuestas[1]['superficie'],(125,330))
     blit_text(cartas_respuestas[1]['superficie'],pregunta['respuesta_b'],(10,10),fuente_respuesta,COLOR_BLANCO)
+    
+    fondo_carta_respuesta =pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, 400, 250, 60),0 , 5 ,5, 5, 5, 5)
     cartas_respuestas[2]['rectangulo'] = pantalla.blit(cartas_respuestas[2]['superficie'],(125,410))
     blit_text(cartas_respuestas[2]['superficie'],pregunta['respuesta_c'],(10,10),fuente_respuesta,COLOR_BLANCO) 
 
