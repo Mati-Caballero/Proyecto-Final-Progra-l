@@ -81,27 +81,35 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
             elif boton_suma_puntaje['rectangulo'].collidepoint(evento.pos):
                 if cantidad_puntos_preguntas < 351:
                     cantidad_puntos_preguntas += 50
+                    click_sonido.play()
             elif boton_resta_puntaje['rectangulo'].collidepoint(evento.pos):
                 if cantidad_puntos_preguntas > 51:
                     cantidad_puntos_preguntas -= 50
+                    click_sonido.play()
             elif boton_suma_respuesta['rectangulo'].collidepoint(evento.pos):
                 if cantidad_respuestas_posibles < 4:
                     cantidad_respuestas_posibles += 1
+                    click_sonido.play()
             elif boton_resta_respuesta['rectangulo'].collidepoint(evento.pos):
                 if cantidad_respuestas_posibles > 2:
                     cantidad_respuestas_posibles -= 1
+                    click_sonido.play()
             elif boton_suma_vidas['rectangulo'].collidepoint(evento.pos):
                 if cantidad_vidas < 5:
                     cantidad_vidas += 1
+                    click_sonido.play()
             elif boton_resta_vidas["rectangulo"].collidepoint(evento.pos):
                 if cantidad_vidas > 1:
                     cantidad_vidas -= 1
+                    click_sonido.play()
             elif boton_suma_tiempo['rectangulo'].collidepoint(evento.pos):
                 if cantidad_tiempo < 30:
                     cantidad_tiempo += 5
+                    click_sonido.play()
             elif boton_resta_tiempo['rectangulo'].collidepoint(evento.pos):
                 if cantidad_tiempo > 5:
                     cantidad_tiempo -= 5
+                    click_sonido.play()
         elif evento.type == pygame.QUIT:
             retorno = "salir"
     
