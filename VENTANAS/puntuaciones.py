@@ -33,7 +33,7 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
 
 def mostrar_puntuaciones(pantalla:pygame.Surface,eventos):
     global volumen
-
+    global fondo_puntajes
     retorno = "puntuaciones"
     
     for evento in eventos:
@@ -62,9 +62,13 @@ def mostrar_puntuaciones(pantalla:pygame.Surface,eventos):
         fecha_top += f'{fecha}\n'
         puntaje_top += f'{puntaje}\n'
 
+    fondo_puntajes = pygame.draw.rect(pantalla, COLOR_ROSA, (5, 120, 130, 300), 0, 5, 5, 5, 5, 5)
+    fondo_puntajes = pygame.draw.rect(pantalla, COLOR_ROSA, (170, 120, 180, 300), 0, 5, 5, 5, 5, 5)
+    fondo_puntajes = pygame.draw.rect(pantalla, COLOR_ROSA, (375, 120, 120, 300), 0, 5, 5, 5, 5, 5)
+
     blit_text(boton_volver['superficie'],"VOLVER",(10,10),fuente_boton,COLOR_BLANCO)
-    blit_text(pantalla,f' NOMBRE\n{nombre_top}',(3,100),fuente,COLOR_BLANCO)
-    blit_text(pantalla, f'FECHA\n{fecha_top}', (200, 100),fuente,COLOR_BLANCO) 
-    blit_text(pantalla, f'PUNTOS\n{puntaje_top}', (400, 100),fuente,COLOR_BLANCO)         
+    blit_text(pantalla,f' NOMBRE\n{nombre_top}',(10,150),fuente,COLOR_BLANCO)
+    blit_text(pantalla, f'FECHA\n{fecha_top}', (200, 150),fuente,COLOR_BLANCO) 
+    blit_text(pantalla, f'PUNTOS\n{puntaje_top}', (390, 150),fuente,COLOR_BLANCO)         
     
     return retorno

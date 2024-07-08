@@ -42,32 +42,18 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
         x = pos[0]  # Reset the x.
         y += word_height  # Start on new row.
 
-def modificar_opcion(cant_opcion, cant_max, cant_min, cant_dif ):
-    if cant_opcion < cant_max:
-        cant_opcion += cant_dif
-    if cant_opcion > cant_min:
-        cant_opcion -= cant_dif
-    return cant_opcion
-                # elif boton_suma_puntaje['rectangulo'].collidepoint(evento.pos):
-                #             if cantidad_puntos_preguntas < 351:
-                #                 cantidad_puntos_preguntas += 50
-                # elif boton_resta_puntaje['rectangulo'].collidepoint(evento.pos):
-                #             if cantidad_puntos_preguntas > 51:
-                #                 cantidad_puntos_preguntas -= 50
-
 volumen = 100
 cantidad_puntos_preguntas = 100
-cantidad_respuestas_posibles = 3
-cantidad_vidas = 3
-cantidad_tiempo = 10
-    
+cantidad_respuestas_posibles = 4
+cantidad_tiempo = 30
+cantidad_vidas = 5
+
 def mostrar_opciones(pantalla:pygame.Surface,eventos):
     global volumen
     global cantidad_puntos_preguntas
     global cantidad_respuestas_posibles
     global cantidad_vidas
     global cantidad_tiempo
-    
     
     retorno = "opciones"
     for evento in eventos:
@@ -99,10 +85,10 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
                 if cantidad_puntos_preguntas > 51:
                     cantidad_puntos_preguntas -= 50
             elif boton_suma_respuesta['rectangulo'].collidepoint(evento.pos):
-                if cantidad_respuestas_posibles < 3:
+                if cantidad_respuestas_posibles < 4:
                     cantidad_respuestas_posibles += 1
             elif boton_resta_respuesta['rectangulo'].collidepoint(evento.pos):
-                if cantidad_respuestas_posibles > 1:
+                if cantidad_respuestas_posibles > 2:
                     cantidad_respuestas_posibles -= 1
             elif boton_suma_vidas['rectangulo'].collidepoint(evento.pos):
                 if cantidad_vidas < 5:
@@ -125,6 +111,7 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     boton_mute['rectangulo'] = pantalla.blit(boton_mute['superficie'],(405,36))
     boton_resta['rectangulo'] = pantalla.blit(boton_resta['superficie'],(80,110))
     boton_suma['rectangulo'] = pantalla.blit(boton_suma['superficie'],(390,110))
+
     boton_resta_puntaje['rectangulo'] = pantalla.blit(boton_resta_puntaje['superficie'],(80,210))
     boton_suma_puntaje['rectangulo'] = pantalla.blit(boton_suma_puntaje['superficie'],(390,210))
     boton_resta_respuesta['rectangulo'] = pantalla.blit(boton_resta_respuesta['superficie'],(80,310))
@@ -150,12 +137,14 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     if volumen > 0:
         pantalla.blit(imagen_mute_on,(390, 1))
     
-    pantalla.blit(imagen_volumen_100,(130,195))
-    pantalla.blit(imagen_volumen_100,(130,295))
-    pantalla.blit(imagen_volumen_100,(130,295))
-    pantalla.blit(imagen_volumen_100,(130,395))
-    pantalla.blit(imagen_volumen_100,(130,495))
-    
+    y = 195
+    for i in range(5):
+        pantalla.blit(imagen_volumen_100,(130,y))
+        y += 100
+    # pantalla.blit(imagen_volumen_100,(130,195))
+    # pantalla.blit(imagen_volumen_100,(130,295))
+    # pantalla.blit(imagen_volumen_100,(130,395))
+    # pantalla.blit(imagen_volumen_100,(130,495))
     pantalla.blit(imagen_suma, (375,90))
     pantalla.blit(imagen_resta, (65,100))
     pantalla.blit(imagen_suma, (375,190))
@@ -177,7 +166,7 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     
     blit_text(pantalla,"Volumen", (190,60),fuente_boton,COLOR_BLANCO)
     blit_text(pantalla,"Puntaje por acierto", (145,170),fuente_boton,COLOR_BLANCO)
-    blit_text(pantalla,"Cantidad Preguntas", (145,270),fuente_boton,COLOR_BLANCO)
+    blit_text(pantalla,"Cantidad Respuestas", (145,270),fuente_boton,COLOR_BLANCO)
     blit_text(pantalla,"Cantidad de Vidas", (150,370),fuente_boton,COLOR_BLANCO)
     blit_text(pantalla,"Tiempo", (210,470),fuente_boton,COLOR_BLANCO)
     

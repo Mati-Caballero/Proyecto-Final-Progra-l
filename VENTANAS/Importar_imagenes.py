@@ -25,6 +25,12 @@ imagen_you_win = pygame.image.load("VENTANAS\imagenes\Game Over\You_win.png")
 imagen_you_win = pygame.transform.scale(imagen_you_win, (200,200))
 
 #VIDAS
+imagen_vida_5 = pygame.image.load("VENTANAS\imagenes\Vidas\Vida_5.png")
+imagen_vida_5 = pygame.transform.scale(imagen_vida_5, (180, 50))
+
+imagen_vida_4 = pygame.image.load("VENTANAS\imagenes\Vidas\Vida_4.png")
+imagen_vida_4 = pygame.transform.scale(imagen_vida_4, (180, 50))
+
 imagen_vida_3 = pygame.image.load("VENTANAS\imagenes\Vidas\Vida_3.png")
 imagen_vida_3 = pygame.transform.scale(imagen_vida_3, (180, 50))
 

@@ -1,18 +1,20 @@
-pregunta,respuesta_a,respuesta_b,respuesta_c,respuesta_correcta
-¿Cuál es el nombre de nuestra galaxia?,Andrómeda,Vía Láctea,Cigarra,b
-¿Qué es una supernova?,Explosión de una estrella,Planeta enano,Tipo de galaxia,a
-¿Qué es un agujero negro?,Región del espacio con alta gravedad,Tipo de cometa,Pequeña estrella,a
-¿Qué es el cinturón de Kuiper?,Zona del sistema solar con asteroides,Región del espacio entre galaxias,Anillo de Saturno,a
-¿Cuál es el planeta más grande del sistema solar?,Mercurio,Júpiter,Marte,b
-¿Cuál es el planeta más cercano al Sol?,Venus,Tierra,Mercurio,c
-¿Qué es una nebulosa?,Nube de gas y polvo interestelar,Tipo de estrella,Satélite natural,a
-¿Qué causa las estaciones en la Tierra?,La inclinación del eje terrestre,El acercamiento al Sol,La distancia a la Luna,a
-¿Cuál es la edad aproximada del universo?,4.5 millones de años,13.8 mil millones de años,100 mil años,b
-¿Qué es un quásar?,Nueva clase de cometa,Núcleo galáctico activo,Tipo de asteroide,b
-¿Qué es la materia oscura?,Materia que no emite luz ni energía,Tipo de agujero negro,Tipo de estrella,a
-¿Cuál es el objeto más lejano del sistema solar?,El cinturón de Kuiper,La Nube de Oort,Plutón,b
-¿Qué es la ley de Hubble?,Ley que describe la expansión del universo,Ley que describe la gravedad terrestre,Ley que describe la rotación de las estrellas,a
-¿Qué es una luna?,Satélite natural que orbita un planeta,Estrella muy pequeña,Nombre de una constelación,a
-¿Qué es un cometa?,Objeto compuesto principalmente de hielo y polvo,Planeta enano,Estrella muy caliente,a
-¿Qué es la zona habitable?,Región donde pueden existir condiciones para la vida,Región del espacio sin gravedad,Región del espacio con alta radiación,a
-¿Qué es el eco cósmico de fondo?,Radiación de microondas que llena el universo,Tipo de estrella,Nombre de una galaxia,a
+pregunta,respuesta_a,respuesta_b,respuesta_c,respuesta_d,respuesta_correcta
+¿Cuál es el planeta más cercano al Sol?,Venus,Tierra,Mercurio,Marte,c
+¿Qué es una supernova?,Explosión de una estrella,Planeta enano,Tipo de galaxia,Nebulosa,a
+¿Cuál es el planeta más grande del sistema solar?,Saturno,Júpiter,Urano,Neptuno,b
+¿Qué es un agujero negro?,Región del espacio con alta gravedad,Tipo de cometa,Pequeña estrella,Planeta gigante,a
+¿Qué es el cinturón de Kuiper?,Zona del sistema solar con asteroides,Región del espacio entre galaxias,Anillo de Saturno,Cinturón de asteroides,a
+¿Cuál es el satélite natural de la Tierra?,Europa,Titán,Calisto,Luna,d
+¿Qué es una nebulosa?,Nube de gas y polvo interestelar,Tipo de estrella,Satélite natural,Planeta enano,a
+¿Qué causa las estaciones en la Tierra?,La inclinación del eje terrestre,El acercamiento al Sol,La distancia a la Luna,La rotación de la Tierra,a
+¿Cuál es la edad aproximada del universo?,4.5 millones de años,13.8 mil millones de años,100 mil años,10 mil millones de años,b
+¿Qué es un quásar?,Nueva clase de cometa,Núcleo galáctico activo,Tipo de asteroide,Planeta enano,b
+¿Qué es la materia oscura?,Materia que no emite luz ni energía,Tipo de agujero negro,Tipo de estrella,Cometa,a
+¿Cuál es el objeto más lejano del sistema solar?,El cinturón de Kuiper,La Nube de Oort,Plutón,El cinturón de asteroides,b
+¿Qué es la ley de Hubble?,Ley que describe la expansión del universo,Ley que describe la gravedad terrestre,Ley que describe la rotación de las estrellas,Ley de la relatividad,a
+¿Qué es una luna?,Estrella muy pequeña,Nombre de una constelación,Planeta enano,Satélite natural que orbita un planeta,d
+¿Qué es un cometa?,Planeta enano,Estrella muy caliente,Objeto compuesto principalmente de hielo y polvo,Asteroide rocoso,c
+¿Qué es la zona habitable?,Región donde pueden existir condiciones para la vida,Región del espacio sin gravedad,Región del espacio con alta radiación,Región cercana a un agujero negro,a
+¿Qué es el eco cósmico de fondo?,Tipo de estrella,Nombre de una galaxia,Radiación visible,Radiación de microondas que llena el universo,d
+¿Cuál es el cuarto planeta desde el Sol?,Júpiter,Mercurio,Marte,Venus,a
+¿Cuál es la estrella más cercana a la Tierra?,Sol,Proxima Centauri,Sirius,Alpha Centauri,a
