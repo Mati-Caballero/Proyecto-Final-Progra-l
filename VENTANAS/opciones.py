@@ -109,9 +109,9 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     
     boton_volver['rectangulo'] = pantalla.blit(boton_volver['superficie'],(21,40))
     boton_mute['rectangulo'] = pantalla.blit(boton_mute['superficie'],(405,36))
+    
     boton_resta['rectangulo'] = pantalla.blit(boton_resta['superficie'],(80,110))
     boton_suma['rectangulo'] = pantalla.blit(boton_suma['superficie'],(390,110))
-
     boton_resta_puntaje['rectangulo'] = pantalla.blit(boton_resta_puntaje['superficie'],(80,210))
     boton_suma_puntaje['rectangulo'] = pantalla.blit(boton_suma_puntaje['superficie'],(390,210))
     boton_resta_respuesta['rectangulo'] = pantalla.blit(boton_resta_respuesta['superficie'],(80,310))
@@ -122,7 +122,7 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
     boton_suma_tiempo['rectangulo'] = pantalla.blit(boton_suma_tiempo['superficie'],(390,510))
     
     if volumen == 100:
-        pantalla.blit(imagen_volumen_100,(130,85))
+        pantalla.blit(imagen_barra,(130,85))
     elif volumen < 100 and volumen > 79:
         pantalla.blit(imagen_volumen_80,(130,85))
     elif volumen < 79 and volumen > 59:
@@ -138,31 +138,25 @@ def mostrar_opciones(pantalla:pygame.Surface,eventos):
         pantalla.blit(imagen_mute_on,(390, 1))
     
     y = 195
-    for i in range(5):
-        pantalla.blit(imagen_volumen_100,(130,y))
+    for i in range(4):
+        pantalla.blit(imagen_barra,(130,y))
         y += 100
-    # pantalla.blit(imagen_volumen_100,(130,195))
-    # pantalla.blit(imagen_volumen_100,(130,295))
-    # pantalla.blit(imagen_volumen_100,(130,395))
-    # pantalla.blit(imagen_volumen_100,(130,495))
-    pantalla.blit(imagen_suma, (375,90))
-    pantalla.blit(imagen_resta, (65,100))
-    pantalla.blit(imagen_suma, (375,190))
-    pantalla.blit(imagen_resta, (65,200))
-    pantalla.blit(imagen_suma, (375,290))
-    pantalla.blit(imagen_resta, (65,300))
-    pantalla.blit(imagen_suma, (375,390))
-    pantalla.blit(imagen_resta, (65,400))
-    pantalla.blit(imagen_suma, (375,490))
-    pantalla.blit(imagen_resta, (65,500))
+        
+    coordenada_x = [375,65]
+    coordenada_y = [90,100]
+    for i in range(5):
+        pantalla.blit(imagen_suma, (coordenada_x[0],coordenada_y[0]))
+        pantalla.blit(imagen_resta, (coordenada_x[1],coordenada_y[1]))
+        coordenada_y[0] += 100
+        coordenada_y[1] += 100
     
     pantalla.blit(imagen_volver, (10,10))
     
-    blit_text(pantalla,f"{volumen} %",(215,105),fuente_volumen,COLOR_BLANCO)
-    blit_text(pantalla,f"{cantidad_puntos_preguntas}",(220,210),fuente_volumen,COLOR_BLANCO)
-    blit_text(pantalla,f"{cantidad_respuestas_posibles}",(220,310),fuente_volumen,COLOR_BLANCO)
-    blit_text(pantalla,f"{cantidad_vidas}",(220,410),fuente_volumen,COLOR_BLANCO)
-    blit_text(pantalla,f"{cantidad_tiempo}",(220,510),fuente_volumen,COLOR_BLANCO)
+    blit_text(pantalla,f"{volumen} %",(215,102),fuente_volumen,COLOR_BLANCO)
+    blit_text(pantalla,f"{cantidad_puntos_preguntas}",(225,210),fuente_volumen,COLOR_BLANCO)
+    blit_text(pantalla,f"{cantidad_respuestas_posibles}",(240,310),fuente_volumen,COLOR_BLANCO)
+    blit_text(pantalla,f"{cantidad_vidas}",(240,410),fuente_volumen,COLOR_BLANCO)
+    blit_text(pantalla,f"{cantidad_tiempo}",(230,510),fuente_volumen,COLOR_BLANCO)
     
     blit_text(pantalla,"Volumen", (190,60),fuente_boton,COLOR_BLANCO)
     blit_text(pantalla,"Puntaje por acierto", (145,170),fuente_boton,COLOR_BLANCO)

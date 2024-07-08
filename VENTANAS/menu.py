@@ -56,14 +56,14 @@ def mostrar_menu(pantalla:pygame.Surface,eventos):
         elif evento.type == pygame.QUIT:
             retorno = "salir"
     
-    boton_jugar["rectangulo"] = pantalla.blit(boton_jugar["superficie"],(160,60))
-    boton_opciones["rectangulo"] = pantalla.blit(boton_opciones["superficie"],(160,160))
-    boton_puntuaciones["rectangulo"] = pantalla.blit(boton_puntuaciones["superficie"],(160,260))
-    boton_salir["rectangulo"] = pantalla.blit(boton_salir["superficie"],(160,365))
+    boton_jugar["rectangulo"] = pantalla.blit(boton_jugar["superficie"],(160,110))
+    boton_opciones["rectangulo"] = pantalla.blit(boton_opciones["superficie"],(160,210))
+    boton_puntuaciones["rectangulo"] = pantalla.blit(boton_puntuaciones["superficie"],(160,310))
+    boton_salir["rectangulo"] = pantalla.blit(boton_salir["superficie"],(160,415))
     
-    fondo_menu.blit(imagen_play, (150,45))
-    fondo_menu.blit(imagen_menu, (150,150))
-    fondo_menu.blit(imagen_score, (150,255))
-    fondo_menu.blit(imagen_back, (150,355))
+    fondo_menu.blit(imagen_play, (150,95))
+    fondo_menu.blit(imagen_menu, (150,200))
+    fondo_menu.blit(imagen_score, (150,305))
+    fondo_menu.blit(imagen_back, (150,405))
     
     return retorno

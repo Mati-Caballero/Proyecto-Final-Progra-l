@@ -60,7 +60,7 @@ error_sonido.set_volume(1)
 bandera_vueltas = True
 cantidad_preguntas = 0
 
-clock = pygame.time.Clock()
+# clock = pygame.time.Clock()
 ultimo_tiempo = pygame.time.get_ticks()
 
 def mostrar_juego(pantalla:pygame.Surface,eventos):
@@ -72,9 +72,11 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     global contador_tiempo
     global ultimo_tiempo
     global fondo_carta_respuesta
+    global cantidad_vidas
     
     if bandera_vueltas:
         contador_tiempo = opciones.cantidad_tiempo
+        cantidad_vidas = opciones.cantidad_vidas
         bandera_vueltas = False
     
     retorno = "juego"
@@ -92,6 +94,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
         if evento.type == pygame.QUIT:
             retorno = "salir"
         if evento.type == pygame.MOUSEBUTTONDOWN:
+            
             for i in range(len(cartas_respuestas)):
                 
                 if cartas_respuestas[i]["rectangulo"].collidepoint(evento.pos):
@@ -103,7 +106,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                         respuesta = 'c'
                     else:
                         respuesta = 'd'
-                        
+                    
                     if pregunta['respuesta_correcta'] == respuesta:
                         click_sonido.play()
                         print("RESPUESTA CORRECTA")                 
@@ -145,17 +148,20 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
                     
                     if opciones.cantidad_vidas == 0:
                         retorno = "terminado"
-                        bandera_vueltas = False
                         opciones.cantidad_tiempo = contador_tiempo
+                        opciones.cantidad_vidas = cantidad_vidas
                         puntuacion = 0
+                        bandera_vueltas = True
+                        
                     if cantidad_preguntas > len(lista_preguntas):
                         retorno = "terminado"
                         cantidad_preguntas = 0
     
     if opciones.cantidad_tiempo == 0:
         retorno = "terminado"
-        bandera_vueltas = False
         opciones.cantidad_tiempo = contador_tiempo
+        opciones.cantidad_vidas = cantidad_vidas
+        bandera_vueltas = True
     
     pantalla.blit(fondo_juego,(0,0))
     
@@ -188,7 +194,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     respuestas = ['respuesta_a', 'respuesta_b', 'respuesta_c', 'respuesta_d']
     
     if opciones.cantidad_respuestas_posibles == 4:
-        for i in range(4):
+        for i in range(len(cartas_respuestas)):
             fondo_carta_respuesta = pygame.draw.rect(fondo_juego, COLOR_VIOLETA_OSCURO, (115, posiciones[i][0], 250, 60), 0, 5, 5, 5, 5, 5)
             cartas_respuestas[i]['rectangulo'] = pantalla.blit(cartas_respuestas[i]['superficie'], (125, posiciones[i][1]))
             blit_text(cartas_respuestas[i]['superficie'], pregunta[respuestas[i]], (10, 10), fuente_respuesta, COLOR_BLANCO)
@@ -214,7 +220,7 @@ def mostrar_juego(pantalla:pygame.Surface,eventos):
     #MUESTRO PUNTUACION
     blit_text(pantalla,f"Puntuación: {puntuacion} puntos",(10,10),fuente_puntuacion,COLOR_BLANCO)
     # MUESTRO EL TIEMPO RESTANTE
-    blit_text(pantalla, f"Tiempo: {opciones.cantidad_tiempo} s", (355, 25), fuente_tiempo, COLOR_NEGRO)
+    blit_text(pantalla, f"Tiempo: {opciones.cantidad_tiempo} s", (353, 25), fuente_tiempo, COLOR_BLANCO)
     
     guardar_puntuacion(puntuacion)
     

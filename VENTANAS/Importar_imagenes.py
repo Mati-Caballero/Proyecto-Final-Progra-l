@@ -70,8 +70,8 @@ imagen_mute_on = pygame.transform.scale(imagen_mute_on, (100,100))
 imagen_mute_off = pygame.image.load("VENTANAS\imagenes\Volumen\Mute_off.png")
 imagen_mute_off = pygame.transform.scale(imagen_mute_off, (100,100))
 
-imagen_volumen_100 = pygame.image.load("VENTANAS\imagenes\Volumen\Volumen_100.png")
-imagen_volumen_100 = pygame.transform.scale(imagen_volumen_100, (240,60))
+imagen_barra = pygame.image.load("VENTANAS\imagenes\Volumen\Volumen_100.png")
+imagen_barra = pygame.transform.scale(imagen_barra, (240,60))
 
 imagen_volumen_80 = pygame.image.load("VENTANAS\imagenes\Volumen\Volumen_80.png")
 imagen_volumen_80 = pygame.transform.scale(imagen_volumen_80, (240,60))
